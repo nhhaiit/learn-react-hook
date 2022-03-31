@@ -36,7 +36,7 @@ function Radio(){
           </div>
         ))}
     
-        <button onClick={onSubmit}>Submit</button>
+        <button onClick={onSubmit}>Sent API</button>
         </div>
     );
 }

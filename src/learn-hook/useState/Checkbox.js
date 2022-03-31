@@ -20,8 +20,6 @@ function Checkbox (){
     
     const [checked, setChecked] = useState([]);
 
-    console.log({ids: checked});
-
     const handleChecked = (id) => {
         const isChecked = checked.includes(id);
         setChecked(prev => {
@@ -45,6 +43,8 @@ function Checkbox (){
                     {course.name}
                 </div>
             ))}
+
+            <button onClick={() => console.log({arr: checked})}>Send API</button>
         </div>
     );
 }

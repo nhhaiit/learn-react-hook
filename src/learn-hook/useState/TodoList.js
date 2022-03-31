@@ -3,7 +3,6 @@ import { useState } from "react";
 function TodoList(){
     const [jobs, setJobs] = useState(() => {
         const storageJobs = JSON.parse(localStorage.getItem('jobs'));
-        console.log(storageJobs);
         return storageJobs ?? [];
     });
     const [job, setJob] = useState('');
