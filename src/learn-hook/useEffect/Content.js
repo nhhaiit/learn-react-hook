@@ -7,6 +7,7 @@ const tabs = ['posts', 'comments', 'albums'];
 function Content(){
     const [posts, setPosts] = useState([]);
     const [type, setType] = useState('posts');
+    const [showGoToTop, setShowGoToTop] = useState(true);
 
     // 1. useEffect(callback()) (ít sử dụng)
     // - Gọi callback mỗi khi Component re-render
@@ -40,7 +41,21 @@ function Content(){
         });
     }, [type]);
 
-    console.log(type);
+    useEffect(() => {
+        
+        const handleScroll = () => {
+            setShowGoToTop(window.scrollY >= 800);
+        }
+        console.log('add scroll');
+        window.addEventListener('scroll', handleScroll);
+
+        //cleanup function
+        return () => {
+            console.log('remove scroll');
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }, []);
+
     return(
         <div>
             {tabs.map(tab => (
@@ -59,6 +74,20 @@ function Content(){
                     <li key={post.id}>{post.title || post.name}</li>
                 ))}
             </ul>
+
+            {showGoToTop && (
+                <button
+                    style={{
+                        position: 'fixed',
+                        right: 20,
+                        bottom: 20,
+                        backgroundColor: '#fff',
+                        color: '#333'
+                    }}
+                >
+                    Go To Top
+                </button>
+            )}
         </div>
     );
 }
